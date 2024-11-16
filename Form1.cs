@@ -80,5 +80,27 @@ namespace itemysql
             MessageBox.Show("Employee deleted");
 
         }
+
+        private void btnUpdate_Click(object sender, EventArgs e)
+        {
+            string sqlQuery = "UPDATE employees SET last_name=@surname,first_name=@name,age=@age,employee_salary=@salary " +
+                "WHERE id=@no";
+            cmd = new MySqlCommand(sqlQuery, conn);
+            cmd.Parameters.AddWithValue("@surname", txtSurname.Text);
+            cmd.Parameters.AddWithValue("@name", txtName.Text);
+            cmd.Parameters.AddWithValue("@age", txtAge.Text);
+            cmd.Parameters.AddWithValue("@salary", txtSalary.Text);
+            cmd.Parameters.AddWithValue("@no", txtNo.Text);
+            conn.Open();
+            cmd.ExecuteNonQuery();
+            conn.Close();
+            receiveData();
+            MessageBox.Show("Employee updated.");
+        }
+
+        private void txtSearch_TextChanged(object sender, EventArgs e)
+        {
+
+        }
     }
 }
