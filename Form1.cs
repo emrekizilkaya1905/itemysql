@@ -100,7 +100,9 @@ namespace itemysql
 
         private void txtSearch_TextChanged(object sender, EventArgs e)
         {
-
+            DataView dv = dt.DefaultView;
+            dv.RowFilter="first_name LIKE'" + txtSearch.Text + "%'";
+            dgwList.DataSource = dv;
         }
     }
 }
